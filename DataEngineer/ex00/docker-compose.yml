@@ -1,3 +1,4 @@
+version: '3.8'
 
 services:
   db:
@@ -6,6 +7,9 @@ services:
     env_file:
       - ../.env
     restart: always
+    volumes:
+      - /goinfre/faksouss/subject/customer:/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -d postgres" ]
       interval: 30s
